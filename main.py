@@ -18,14 +18,17 @@ answers = [
 
 correct_answers = [
 
-    ["London"],
+    "London",
 
     ]
 
-def check_answer(j, index):
-    if j == correct_answers[index]:
-        yes = tk.Label(text = "eh")
+def check_answer(answer, index):
+    if answer == correct_answers[index]:
+        yes = tk.Label(text = "yes")
         yes.pack()
+    else:
+        no = tk.Label(text = "no")
+        no.pack()
 
 
 def refresh(index, answers):
@@ -57,3 +60,5 @@ root = tk.Tk()
 root.wm_geometry("300x200")
 
 root.mainloop()
+
+
