@@ -2,7 +2,13 @@
 
 import tkinter as tk
 
+# Main window
+root = tk.Tk()
+
+
 index = 0
+score = 0
+
 
 questions = [
 
@@ -12,18 +18,18 @@ questions = [
     "What is the largest ocean?",
     "What is the smallest planet?",
     "What is the only even prime number?",
-    :
+    
     ]
 
 answers = [
 
     ["Poland", "London", "Amsterdam", "Paris"],
-    ["Everest", "Kinabalu", "Aconcagua", "McKinley"]
-    ["Amazon", "Nile", "Colorado", "Dragon"]
-    ["Atlantic", "Pacific", "Indian", "Arctic"]
-    ["Saturn", "Jupiter", "Mars", "Mercury]
+    ["Everest", "Kinabalu", "Aconcagua", "McKinley"],
+    ["Amazon", "Nile", "Colorado", "Dragon"],
+    ["Atlantic", "Pacific", "Indian", "Arctic"],
+    ["Saturn", "Jupiter", "Mars", "Mercury"],
     ["9", "44", "0" ,"2"]
-    [
+
     ]
 
 correct_answers = [
@@ -37,43 +43,44 @@ correct_answers = [
     
     ]
 
-def check_answer(answer, index):
+
+#def refresh(index):
+    #index+=1
+    #question = tk.Label( text = questions[index])
+    #question.pack()
+    #answer_choices = answers[index]
+####
+
+def delete():
+    for widget in root.winfo_children():
+        widget.destroy()
+
+
+def check_answer(answer, questions, index, score):
     if answer == correct_answers[index]:
-        yes = tk.Label(text = "yes")
-        yes.pack()
-    else:
-        no = tk.Label(text = "no")
-        no.pack()
+        score +=1
+    index+=1
+    delete()
+    check(index, questions, answers, score)
 
 
-def refresh(index, answers):
-    
-    question = tk.Label( text = questions[index])
+
+def check(index, questions, answers, score):
+
+    question = tk.Label(text = questions[index])
     question.pack()
     answer_choices = answers[index]
 
+    score = tk.Label(text = score)
+    score.pack()
+
     for j in answer_choices:
-        potential_answers = tk.Button( text = j, command = lambda answer = j: check_answer(answer, index))
+        potential_answers = tk.Button( text = j, command = lambda answer = j: check_answer(answer, questions, index, score))
         potential_answers.pack()
 
 
+check(index, questions, answers, score)
 
-refresh(index, answers)
-
-
-def my_button(index):
-
-    index+=1
-    refresh(index)
-
-    print("kunsh typed that")
-
-
-
-# Main window
-root = tk.Tk()
-root.wm_geometry("300x200")
 
 root.mainloop()
-
 
