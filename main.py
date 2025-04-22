@@ -6,20 +6,35 @@ index = 0
 
 questions = [
 
-    "what is the capital of england?",
-
+    "What is the capital of England?",
+    "What is the tallest mountain?",
+    "What is the longest river?",
+    "What is the largest ocean?",
+    "What is the smallest planet?",
+    "What is the only even prime number?",
+    :
     ]
 
 answers = [
 
     ["Poland", "London", "Amsterdam", "Paris"],
-
+    ["Everest", "Kinabalu", "Aconcagua", "McKinley"]
+    ["Amazon", "Nile", "Colorado", "Dragon"]
+    ["Atlantic", "Pacific", "Indian", "Arctic"]
+    ["Saturn", "Jupiter", "Mars", "Mercury]
+    ["9", "44", "0" ,"2"]
+    [
     ]
 
 correct_answers = [
 
     "London",
-
+    "Everest",
+    "Nile",
+    "Pacific",
+    "Mercury",
+    "2",
+    
     ]
 
 def check_answer(answer, index):
