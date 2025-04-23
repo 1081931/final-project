@@ -9,6 +9,7 @@ root = tk.Tk()
 index = 0
 score = 0
 
+score_list = []
 
 questions = [
 
@@ -58,10 +59,16 @@ def delete():
 
 def check_answer(answer, questions, index, score):
     if answer == correct_answers[index]:
-        score +=1
-    index+=1
+        score += 1
+
+    index += 1
     delete()
-    check(index, questions, answers, score)
+
+    if index < len(questions):
+        check(index, questions, answers, score)
+    else:
+        end_screen(answer, questions, index, score)
+
 
 
 
@@ -71,8 +78,8 @@ def check(index, questions, answers, score):
     question.pack()
     answer_choices = answers[index]
 
-    score = tk.Label(text = score)
-    score.pack()
+    score_display = tk.Label(text = score)
+    score_display.pack()
 
     for j in answer_choices:
         potential_answers = tk.Button( text = j, command = lambda answer = j: check_answer(answer, questions, index, score))
@@ -80,6 +87,28 @@ def check(index, questions, answers, score):
 
 
 check(index, questions, answers, score)
+
+
+
+def end_screen(answer, questions, index, score):
+
+    if score < len(questions):
+        message = tk.Label(text = "lmao bozo")
+    else:
+        message = tk.Label(text = "gud job")
+
+    message.pack()
+
+    final_score = tk.Label(text = (str(score) + '/6'))
+    final_score.pack()
+
+    score_list.append(score)
+    index = 0
+    score = 0
+
+    restart = tk.Button( text = "Restart?", command = lambda: check(answer, questions, index, score))
+
+
 
 
 root.mainloop()
