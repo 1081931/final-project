@@ -30,8 +30,8 @@ answers = [
     ["Saturn", "Jupiter", "Mars", "Mercury"],
     ["9", "44", "0", "2"],
     ["24", "3000", "200", "365"],
-    ["England", "Ukraine", "Lesotho" , "Spain"],
-    ["Milk", "Juice", "Honey" , "Soda"],
+    ["England", "Ukraine", "Lesotho", "Spain"],
+    ["Milk", "Juice", "Honey", "Soda"],
     ]
 
 correct_answers = [
@@ -46,18 +46,9 @@ correct_answers = [
     "Honey"
     ]
 
-
-#def refresh(index):
-    #index+=1
-    #question = tk.Label( text = questions[index])
-    #question.pack()
-    #answer_choices = answers[index]
-####
-
 def delete():
     for widget in root.winfo_children():
         widget.destroy()
-
 
 def check_answer(answer, questions, index, score):
     if answer == correct_answers[index]:
@@ -69,7 +60,6 @@ def check_answer(answer, questions, index, score):
     else:
         end_screen(answer, questions, index, score)
 
-
 def display(index, questions, answers, score):
     question = tk.Label(text = questions[index])
     question.pack()
@@ -79,9 +69,6 @@ def display(index, questions, answers, score):
     for j in answer_choices:
         potential_answers = tk.Button( text = j, command = lambda answer = j: check_answer(answer, questions, index, score))
         potential_answers.pack()
-
-display(index, questions, answers, score)
-
 
 def end_screen(answer, questions, index, score):
     if score < len(questions):
@@ -100,7 +87,8 @@ def end_screen(answer, questions, index, score):
     score = 0
 
     restart = tk.Button( text = "Restart?", command = lambda: display(answer, questions, index, score))
-
-
+    
+#Main
+display(index, questions, answers, score)
 root.mainloop()
 
