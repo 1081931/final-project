@@ -28,10 +28,10 @@ answers = [
     ["Amazon", "Nile", "Colorado", "Dragon"],
     ["Atlantic", "Pacific", "Indian", "Arctic"],
     ["Saturn", "Jupiter", "Mars", "Mercury"],
-    ["9", "44", "0" ,"2"],
-    ["24", "3000", "200" ,"365"],
-    ["England", "Ukraine", "Lesotho" ,"Spain"],
-    ["Milk", "Juice", "Honey" ,"Soda"],
+    ["9", "44", "0", "2"],
+    ["24", "3000", "200", "365"],
+    ["England", "Ukraine", "Lesotho" , "Spain"],
+    ["Milk", "Juice", "Honey" , "Soda"],
     ]
 
 correct_answers = [
@@ -62,43 +62,32 @@ def delete():
 def check_answer(answer, questions, index, score):
     if answer == correct_answers[index]:
         score += 1
-
     index += 1
     delete()
-
     if index < len(questions):
         display(index, questions, answers, score)
     else:
         end_screen(answer, questions, index, score)
 
 
-
-
 def display(index, questions, answers, score):
-
     question = tk.Label(text = questions[index])
     question.pack()
     answer_choices = answers[index]
-
     score_display = tk.Label(text = "Score: "+str(score))
     score_display.pack()
-
     for j in answer_choices:
         potential_answers = tk.Button( text = j, command = lambda answer = j: check_answer(answer, questions, index, score))
         potential_answers.pack()
 
-
 display(index, questions, answers, score)
 
 
-
 def end_screen(answer, questions, index, score):
-
     if score < len(questions):
         message = tk.Label(text = "Game over. Would you like to play again?")
     else:
         message = tk.Label(text = "Game over. You got all of them right!")
-
     message.pack()
 
     final_score = tk.Label(text = str(score) + '/'+str(len(questions)))
@@ -111,8 +100,6 @@ def end_screen(answer, questions, index, score):
     score = 0
 
     restart = tk.Button( text = "Restart?", command = lambda: display(answer, questions, index, score))
-
-
 
 
 root.mainloop()
