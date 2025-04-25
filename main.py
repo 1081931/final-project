@@ -61,14 +61,14 @@ def check_answer(answer, questions, index, score):
         end_screen(answer, questions, index, score)
 
 def display(index, questions, answers, score):
-    question = tk.Label(text = questions[index])
-    question.pack()
+    question = tk.Label(text = questions[index], font=("Arial", 17, "bold"))
+    question.pack(padx=20,pady=20)
     answer_choices = answers[index]
-    score_display = tk.Label(text = "Score: "+str(score))
+    score_display = tk.Label(text = "Score: "+str(score), font=("Arial", 12))
     score_display.pack()
     for j in answer_choices:
         potential_answers = tk.Button( text = j, command = lambda answer = j: check_answer(answer, questions, index, score))
-        potential_answers.pack()
+        potential_answers.pack(padx=10,pady=10)
 
 def end_screen(answer, questions, index, score):
     if score < len(questions):
@@ -86,9 +86,9 @@ def end_screen(answer, questions, index, score):
     index = 0
     score = 0
 
-    restart = tk.Button( text = "Restart?", command = lambda: display(answer, questions, index, score))
+    restart = tk.Button( text = "Restart?", command = lambda: (delete(), display(index, questions, answers, score)),bg="Green", fg="white", font=("Arial", 12, "bold"))
+    restart.pack(padx=10,pady=10)
     
 #Main
 display(index, questions, answers, score)
 root.mainloop()
-
