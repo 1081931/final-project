@@ -72,17 +72,17 @@ def display(index, questions, answers, score):
 
 def end_screen(answer, questions, index, score):
     if score < len(questions):
-        message = tk.Label(text = "Game over. Would you like to play again?")
+        message = tk.Label(text = "Game over. Would you like to play again?",font=("Arial", 15))
     else:
-        message = tk.Label(text = "Game over. You got all of them right!")
-    message.pack()
+        message = tk.Label(text = "Game over. You got all of them right!",font=("Arial", 15))
+    message.pack(padx=10,pady=10)
 
-    final_score = tk.Label(text = str(score) + '/'+str(len(questions)))
-    final_score.pack()
+    final_score = tk.Label(text = "Score: "+str(score) + '/'+str(len(questions)),font=("Arial", 12))
+    final_score.pack(padx=10,pady=10)
 
     score_list.append(score)
-    high_score = tk.Label(text="Highest score: "+str(max(score_list))+'/'+str(len(questions)))
-    high_score.pack()
+    high_score = tk.Label(text="Highest score: "+str(max(score_list))+'/'+str(len(questions)),font=("Arial", 12))
+    high_score.pack(padx=10,pady=10)
     index = 0
     score = 0
 
