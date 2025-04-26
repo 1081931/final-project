@@ -1,11 +1,10 @@
-
 import tkinter as tk
 
 root = tk.Tk()
 
 index = 0
 score = 0
-max = 0
+highest=0
 
 score_list = []
 
@@ -57,7 +56,7 @@ def check_answer(answer, questions, index, score):
     if index < len(questions):
         display(index, questions, answers, score)
     else:
-        end_screen(answer, questions, index, score)
+        end_screen(questions, index, score, highest)
 
 def display(index, questions, answers, score):
     question = tk.Label(text = questions[index], font=("Arial", 17, "bold"))
@@ -66,20 +65,10 @@ def display(index, questions, answers, score):
     score_display = tk.Label(text = "Score: "+str(score), font=("Arial", 12))
     score_display.pack()
     for j in answer_choices:
-        potential_answers = tk.Button( text = j, command = lambda answer = j: check_answer(answer, questions, index, score))
+        potential_answers = tk.Button( text = j,font=("Arial", 14),width = 20, height = 2, bg="#d1a9bf", command = lambda answer = j: check_answer(answer, questions, index, score))
         potential_answers.pack(padx=10,pady=10)
 
-
-def find_top_score(score_list, max):
-    for i in score_list:
-        if max < i:
-            max = i
-    return max
-
-
-
-
-def end_screen(answer, questions, index, score):
+def end_screen(questions, index, score,highest):
     if score < len(questions):
         message = tk.Label(text = "Game over. Would you like to play again?",font=("Arial", 15))
     else:
@@ -89,19 +78,18 @@ def end_screen(answer, questions, index, score):
     final_score = tk.Label(text = "Score: "+str(score) + '/'+str(len(questions)),font=("Arial", 12))
     final_score.pack(padx=10,pady=10)
 
-
     score_list.append(score)
-    temp_var = find_top_score(score_list, max)
+    for i in score_list:
+        if i>highest:
+            highest = i
 
-    high_score = tk.Label(text="Highest score: "+str(temp_var)+'/'+str(len(questions)),font=("Arial", 12))
+    high_score = tk.Label(text="Highest score: "+str(highest)+'/'+str(len(questions)),font=("Arial", 12))
     high_score.pack(padx=10,pady=10)
     index = 0
     score = 0
-
 
     restart = tk.Button( text = "Restart?", command = lambda: (delete(), display(index, questions, answers, score)),bg="Green", fg="white", font=("Arial", 12, "bold"))
     restart.pack(padx=10,pady=10)
     
 display(index, questions, answers, score)
 root.mainloop()
-
